@@ -161,5 +161,9 @@ cython_debug/
 
 ./Secrets
 Secrets
+<<<<<<< HEAD
 secrets.txt
 credentials.json
+=======
+secrets.txt
+>>>>>>> 200954e04459bb10e15a91afd974e1dec56047ae
