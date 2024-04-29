@@ -5,7 +5,7 @@ from Secrets.config import sheet_id, path_to_photos
 
 
 async def get_product_data(product_index, flag):
-
+    print('FLAG---->', flag)
     sheet_name = 'Склад'
     
     values_product_data = get_service().spreadsheets().values().get(
@@ -28,12 +28,17 @@ async def get_product_data(product_index, flag):
         if product == product_name:
             product_message += f'{product_name} - остаток: {product_balance[cnt]} - размер: {product_size[cnt]}\n'
         cnt += 1
-
-    files_list = os.listdir(path_to_photos)
-    photo_name = product_name + '.jpg'
-    if photo_name in files_list:
-        flag = True
     product_list.append(product_message)
-    product_list.append(flag)
-    product_list.append(photo_name)
-    return product_list
+    files_list = os.listdir(path_to_photos)
+    if product_name + '.jpg' in files_list:
+        flag = True
+        photo_name = product_name + '.jpg'
+        product_list.append(flag)
+        product_list.append(photo_name)
+        print('FLAG111---->', flag)
+        print('ИМЯ ПРОДАКТА--->',product_name)
+        return product_list
+    else:
+        product_list.append(flag)
+        print('FLAG111---->', flag)
+        return product_list

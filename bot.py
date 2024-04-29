@@ -4,8 +4,8 @@ from aiogram import executor
 from getRequests.getCategories import get_categories
 from getRequests.getProductData import get_product_data
 from getRequests.getTargetStock import get_names_of_product
+from setRequests.setSell import set_sell
 from stock import get_stock
-# import json
 from markups import menu_markup, menu_markup_names_of_products, menu_markup_product
 from Secrets.config import telegram_token, sheet_id
 from utils.long_message import long_message, send_long_message
@@ -73,10 +73,11 @@ async def process_callback(callback_query: types.CallbackQuery):
         chat_id = callback_query.message.chat.id
         product_data_list = await get_product_data(product_index=product_index, flag=False)
         product_data = product_data_list[0]
-        flag = product_data[1]
-        print(flag)
-        photo_name = product_data_list[2]
-        if flag:
+        flag = product_data_list[1]
+        print('FLAG2-->',flag)
+        if flag == True:
+            photo_name = product_data_list[2]
+
             with open(f'{path_to_photos}{photo_name}', 'rb') as f:
                 photo = f.read()
 
@@ -87,21 +88,27 @@ async def process_callback(callback_query: types.CallbackQuery):
                 await bot.send_photo(
                     chat_id=chat_id,
                     photo=photo, 
-                    reply_markup=menu_markup(),
-                    
                 )
         else:
             await bot.send_message(
                 chat_id=chat_id,
                 text=product_data,
-                reply_markup=menu_markup(),
-
             )
+
+    if callback_query.data == 'sell':
+        await set_sell()
+        message = 'You add information to the table! Nice!'
+        chat_id = callback_query.message.chat_id
+        await bot.send(
+            chat_id=chat_id,
+            text=message,
+        )
+        
 
 
     await bot.send_message(
         chat_id=chat_id,
-        text='Пока всё =)',
+        text='Меню',
         reply_markup=menu_markup()
     )       
 
