@@ -14,4 +14,3 @@ async def get_stock():
     tableData = values['values']
 
     return tableData
-d

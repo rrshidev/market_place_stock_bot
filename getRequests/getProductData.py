@@ -37,8 +37,10 @@ async def get_product_data(product_index, flag):
         product_list.append(photo_name)
         print('FLAG111---->', flag)
         print('ИМЯ ПРОДАКТА--->',product_name)
+        product_list.append(product_name)
         return product_list
     else:
         product_list.append(flag)
         print('FLAG111---->', flag)
+        product_list.append(product_name)
         return product_list
