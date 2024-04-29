@@ -51,3 +51,23 @@ def menu_markup_names_of_products(name, index) -> InlineKeyboardMarkup:
         )
     )
     return builder
+
+
+def buy_sell_menu() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardMarkup()
+    builder.row(
+        InlineKeyboardButton(
+            text='Новый чек',
+            callback_data='new_check'
+
+        )
+        
+    )
+    builder.row(
+        InlineKeyboardButton(
+            text='Возврат товара',
+            callback_data='money_back'
+        )
+    
+    )
+    return builder 
