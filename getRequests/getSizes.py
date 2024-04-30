@@ -20,4 +20,4 @@ async def get_sizes(product_name):
         cnt += 1
     return size_list
     print('size_list--->', size_list)
-
+    
