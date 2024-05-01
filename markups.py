@@ -10,7 +10,7 @@ def menu_markup() -> InlineKeyboardMarkup:
     builder.row(
         InlineKeyboardButton(
             text="Показать остаток по всему складу склад", 
-            callback_data='check_balance'
+            callback_data='nc|Ремень Louis Vuitton Monogram (Графитовый)'
         )
     )
 
@@ -62,21 +62,21 @@ def menu_markup_names_of_products(name, index) -> InlineKeyboardMarkup:
     return builder
 
 
-def buy_sell_menu(product_name) -> InlineKeyboardMarkup:
+def buy_sell_menu(product_index) -> InlineKeyboardMarkup:
     
     builder = InlineKeyboardMarkup()
     
     builder.row(
         InlineKeyboardButton(
             text='Новый чек',
-            callback_data=f'new_check|{product_name}'
+            callback_data=f'new_check|{product_index}'
         )
     )
 
     builder.row(
         InlineKeyboardButton(
             text='Возврат товара',
-            callback_data=f'money_back|{product_name}'
+            callback_data=f'money_back|{product_index}'
         )
     )
 

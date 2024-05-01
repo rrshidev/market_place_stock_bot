@@ -80,6 +80,7 @@ async def process_callback(callback_query: types.CallbackQuery):
         if flag == True:
             photo_name = product_data_list[2]
             product_name = product_data_list[3]
+            product_index = product_data_list[4]
 
             with open(f'{path_to_photos}{photo_name}', 'rb') as f:
                 photo = f.read()
@@ -91,14 +92,15 @@ async def process_callback(callback_query: types.CallbackQuery):
                 await bot.send_photo(
                     chat_id=chat_id,
                     photo=photo, 
-                    reply_markup=buy_sell_menu(product_name)
+                    reply_markup=buy_sell_menu(product_index)
                 )
         else:
             product_name = product_data_list[2]
+            product_index = product_data_list[3]
             await bot.send_message(
                 chat_id=chat_id,
                 text=product_data,
-                reply_markup=buy_sell_menu(product_name)
+                reply_markup=buy_sell_menu(product_index)
             )
 
     if callback_query.data.startswith('sell'):
@@ -110,10 +112,21 @@ async def process_callback(callback_query: types.CallbackQuery):
         )
 
     if callback_query.data.startswith('new_check|'):
-        product_name = callback_query.data.split('|')[1]
+        product_index = callback_query.data.split('|')[1]
+        product_data = await get_product_data(product_index=product_index, flag=False)
         chat_id = callback_query.message.chat.id
+        # sizes = await get_sizes(product_name)
+        product_flag = product_data[1]
+        if product_flag == True:
+            sizes = product_data[5]
+            product_name = product_data[3]
+        else:
+            sizes = product_data[4]
+            product_name = product_data[2]    
+       
         phrase = f'Новый чек: {product_name}\n\nВыбери размер:'
-        sizes = await get_sizes(product_name)
+
+        
         await bot.send_message(
             chat_id=chat_id,
             text=phrase,

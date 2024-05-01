@@ -26,21 +26,21 @@ async def get_names_of_product(category):
     tableCategories = tableData2[0]
     
     nameList = []
-    indexLisst = []
+    indexList = []
     globalList = []
     cnt = 0
     for c in tableCategories:
         # print(c,tableCategories[cnt], cnt)
         if c == category and tableNames[cnt] not in nameList:
             index = cnt
-            indexLisst.append(index)
+            indexList.append(index)
             print('INDEX--->', cnt)
             nameList.append(tableNames[cnt])
             print('NAME--->', nameList)
         cnt += 1
    
     globalList.append(nameList)
-    globalList.append(indexLisst)
+    globalList.append(indexList)
     print('GLOBAL--->', globalList)
     # nameList.sort()
 

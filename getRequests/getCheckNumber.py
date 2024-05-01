@@ -46,9 +46,7 @@ async def get_check_number(user_sessions):
                  "majorDimension": "ROWS",
                  "values": [[f"{current_check}"]]},
             ]
-            ]
         }
-
     ).execute()
 
     return current_check

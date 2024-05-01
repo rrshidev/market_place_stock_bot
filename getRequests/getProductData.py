@@ -24,10 +24,13 @@ async def get_product_data(product_index, flag):
     product_message = ''
     product_list = []
     cnt = 0
+    product_only_size = []
     for product in product_names:
         if product == product_name:
             product_message += f'{product_name} - остаток: {product_balance[cnt]} - размер: {product_size[cnt]}\n'
+            product_only_size.append(product_size[cnt])
         cnt += 1
+    print('product_only_size--->', product_only_size)
     product_list.append(product_message)
     files_list = os.listdir(path_to_photos)
     if product_name + '.jpg' in files_list:
@@ -38,9 +41,14 @@ async def get_product_data(product_index, flag):
         print('FLAG111---->', flag)
         print('ИМЯ ПРОДАКТА--->',product_name)
         product_list.append(product_name)
+        product_list.append(product_index)
+        product_list.append(product_only_size)
         return product_list
     else:
         product_list.append(flag)
         print('FLAG111---->', flag)
         product_list.append(product_name)
+        product_list.append(product_index)
+        product_list.append(product_only_size)
+
         return product_list
