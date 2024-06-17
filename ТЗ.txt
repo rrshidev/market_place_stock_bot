@@ -7,8 +7,12 @@
  
  3а) открыть чек --> выбрать товары --> закрыть чек
  3б) новый чек --> тип продажи --> ввод артикула --> стоимоть одной позиции, которой артикул ввёл --> кнопка добавить\закрыть --> статус
-
-
+-------
+flow_for_target_stock_sell:
+new_check -->size(give article)-->price-->count-->type_sell-->status
+-------
+flow_for_article_sell:
+new_check -->inter arcticle --> enter price --> count --> type_sell --> status 
  в последствии научить редактировать статус
  ---------
  - слелать 2 кнопки:

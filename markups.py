@@ -9,14 +9,14 @@ def menu_markup() -> InlineKeyboardMarkup:
 
     builder.row(
         InlineKeyboardButton(
-            text="Показать остаток по всему складу склад", 
+            text="Показать остаток по всему складу", 
             callback_data='nc|Ремень Louis Vuitton Monogram (Графитовый)'
         )
     )
 
     builder.row(
         InlineKeyboardButton(
-            text="Продажа", 
+            text="Быстрая продажа по артикулу", 
             callback_data='sell'
         )
     )
@@ -117,3 +117,43 @@ def sell_type_buttons() -> InlineKeyboardMarkup:
     )
 
     return builder
+
+
+def status_buttons() -> InlineKeyboardMarkup:
+
+    builder = InlineKeyboardMarkup()
+
+    builder.row(
+        InlineKeyboardButton(
+            text='Бронь',
+            callback_data='status|Бронь'
+        )
+    )
+
+    builder.row(
+        InlineKeyboardButton(
+            text='В пути',
+            callback_data='status|В пути'
+        )
+    )
+
+    builder.row(
+        InlineKeyboardButton(
+            text='Успешно',
+            callback_data='status|Успешно'
+        )
+    )
+    
+    return builder
+
+
+def check_table_markup() -> InlineKeyboardMarkup:
+
+    builder = InlineKeyboardMarkup()
+
+    builder.row(
+        InlineKeyboardButton(
+            text='Проверить таблицу',
+            url='https://docs.google.com/spreadsheets/d/1gxl-vr7RuF2SRuXVlifO4tIzWeYJBHUM_XZWjCz7q7o/edit#gid=1680109685'
+        )
+    )

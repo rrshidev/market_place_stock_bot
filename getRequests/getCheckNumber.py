@@ -5,7 +5,7 @@ from getRequests.getRequest import get_service
 async def get_check_number(user_sessions):
     
     session = user_sessions
-    name, size, sell_type = session['name'], session['size'], session['sell_type']
+    name, size, price, number, sell_type, status = session['name'], session['size'], session['price'], session['number'], session['sell_type'], session['status']
     get_sheet_name = 'P&L'
     sells_data = get_service().spreadsheets().values().get(
         spreadsheetId=sheet_id,
@@ -36,15 +36,21 @@ async def get_check_number(user_sessions):
                  {"range": f"'{get_sheet_name}'!B{set_index}",
                  "majorDimension": "ROWS",
                  "values": [[f"{name}"]]},
-                 {"range": f"'{get_sheet_name}'!F{set_index}",
-                 "majorDimension": "ROWS",
-                 "values": [[f"{size}"]]},
-                 {"range": f"'{get_sheet_name}'!J{set_index}",
-                 "majorDimension": "ROWS",
-                 "values": [[f"{sell_type}"]]},
                  {"range": f"'{get_sheet_name}'!D{set_index}",
                  "majorDimension": "ROWS",
                  "values": [[f"{current_check}"]]},
+                 {"range": f"'{get_sheet_name}'!F{set_index}",
+                 "majorDimension": "ROWS",
+                 "values": [[f"{size}"]]},
+                 {"range": f"'{get_sheet_name}'!G{set_index}",
+                 "majorDimension": "ROWS",
+                 "values": [[f"{price}"]]},
+                 {"range": f"'{get_sheet_name}'!J{set_index}",
+                 "majorDimension": "ROWS",
+                 "values": [[f"{sell_type}"]]},
+                 {"range": f"'{get_sheet_name}'!K{set_index}",
+                 "majorDimension": "ROWS",
+                 "values": [[f"{status}"]]},
             ]
         }
     ).execute()
